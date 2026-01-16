@@ -50,6 +50,37 @@
             
             $stmt->bind_param("sssss", $nome, $categoria, $luogo, $data, $foto);
             return $stmt->execute();
-    }
+        }
+
+        // Nuovi metodi per la pagina "cerca oggetti" e per creare richieste "È mio"
+        /**
+         * Restituisce gli oggetti segnalati (oggetti_ritrovati) con info inseritore se presente
+         * @return array
+         */
+        public function getFoundObjects(): array {
+            $query = "SELECT o.*, u.id AS inseritore_id, u.email AS inseritore_email, u.nome AS inseritore_nome
+                      FROM oggetti_ritrovati o
+                      LEFT JOIN utenti u ON o.id_inseritore = u.id
+                      ORDER BY o.data_inserimento DESC";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Crea una richiesta di claim semplice nella tabella richieste
+         * @param int $objectId
+         * @param int $claimerId
+         * @param string|null $message
+         * @return bool
+         */
+        public function createClaimRequest(int $objectId, int $claimerId, ?string $message = null): bool {
+            $query = "INSERT INTO richieste (oggetto_id, richiedente_id, messaggio) VALUES (?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) return false;
+            $stmt->bind_param("iis", $objectId, $claimerId, $message);
+            return $stmt->execute();
+        }
     }
 ?>
