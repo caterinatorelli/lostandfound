@@ -1,11 +1,10 @@
 <?php
 require_once("templates/bootstrap.php");
 
-// 1. Inizializziamo le variabili che il template si aspetta
 $stato_inserimento = "form";
 $errore_msg = "";
 
-// 2. LOGICA: Controlliamo se l'utente ha premuto il tasto "Invia"
+// Controlla se l'utente ha premuto il tasto "Invia"
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $categoria = $_POST["categoria"];
@@ -40,8 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// 3. PASSAGGIO DATI AL TEMPLATE
-// Dobbiamo rendere queste variabili disponibili dentro base.php e upload-form.php
 $templateParams["titolo"] = "Lost and Found - Upload";
 $templateParams["nome"] = "components/upload-form.php";
 $templateParams["stato_inserimento"] = $stato_inserimento; // Passiamo lo stato
