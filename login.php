@@ -78,11 +78,10 @@ if (isset($_POST['submit'])) {
                         </div>
                     </form>
                     <div class="mt-3 text-center">
-                        <p>Non hai un account? <a href="registration.php">Registrati</a></p>
+                       <p>Non hai un account? <a href="registration.php" class="text-primary fw-bold">Registrati</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-</html>
