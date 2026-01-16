@@ -83,10 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if ($stato_inserimento == "form"): ?>
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white text-center py-3">
-                        <h1 class="h4 mb-0">Segnala Oggetto Trovato</h1>
+                        <h1 class="h4 mb-0">Segnala Oggetto Trovato</h1> <!--tratta il titolo come h1 ma lo fa vedere come h4 -->
                     </div>
                     <div class="card-body p-4">
-                        <form action="inseriscioggetto.php" method="POST" enctype="multipart/form-data">
+                        <form action="inseriscioggetto.php" method="POST" enctype="multipart/form-data"> <!--Divide i dati in "parti" (multiple parts).
+                            Invia il testo (nome, categoria) in un modo e i dati binari della foto in un altro, permettendo al server di ricostruire 
+                            il file immagine correttamente.!-->
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Cosa hai trovato?</label>
                                 <input type="text" class="form-control" name="nome" placeholder="Es: Zaino, Smartphone..." required>
