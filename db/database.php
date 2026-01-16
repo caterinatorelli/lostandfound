@@ -42,5 +42,14 @@
 
             $stmt->execute();
         }
+
+        public function insertOggetto($nome, $categoria, $luogo, $data, $foto) {
+            $query = "INSERT INTO oggetti_ritrovati (nome, categoria, luogo, data_ritrovamento, foto) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) return false; 
+            
+            $stmt->bind_param("sssss", $nome, $categoria, $luogo, $data, $foto);
+            return $stmt->execute();
+    }
     }
 ?>
