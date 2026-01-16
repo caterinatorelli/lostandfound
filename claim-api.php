@@ -1,5 +1,4 @@
 <?php
-<?php
 require_once(__DIR__ . "/templates/bootstrap.php"); // avvia sessione e inizializza $db_obj
 require_once(__DIR__ . "/utils/functions.php");
 
