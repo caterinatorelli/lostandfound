@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $stmt->bind_param("ss", $email, $password_sicura);
 
     if ($stmt->execute()) {
-        // Aggiunto ruolo 'status' per avvisare gli screen reader del cambiamento
-        $messaggio = "<div class='alert alert-success' role='status'>Registrazione completata! <a href='login.php'>Vai al login</a></div>";
+        // Manteniamo role='status' per l'accessibilità (avvisa gli screen reader)
+        $messaggio = "<div class='alert alert-success' role='status'>Registrazione completata! <a href='login.php' class='alert-link'>Vai al login</a></div>";
     } else {
         $messaggio = "<div class='alert alert-danger' role='alert'>Errore durante la registrazione (Email già presente?).</div>";
     }
@@ -27,15 +27,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione - Lost & Found Campus</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Miglioramento del contrasto per l'accessibilità  */
-        .form-label { font-weight: 600; }
-        :focus { outline: 3px solid #0d6efd; border-radius: 4px; }
-    </style>
-</head>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    </head>
 <body class="bg-light d-flex align-items-center vh-100">
-    <main class="container"> <div class="row justify-content-center">
+    <main class="container"> 
+        <div class="row justify-content-center">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card shadow p-4">
                     <h1 class="text-center h3 mb-4">Crea un account</h1>
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                                    class="form-control" 
                                    required 
                                    aria-required="true"
-                                   placeholder="esempio@studenti.unibo.it"
+                                   placeholder="esempio@studenti.it"
                                    autocomplete="email">
                         </div>
                         <div class="mb-3">
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                     
                     <footer class="mt-4 text-center">
                         <p class="small text-muted">
-                            Hai già un account? <a href="login.php" aria-label="Vai alla pagina di login">Accedi qui</a>
+                            Hai già un account? <a href="login.php" class="text-primary fw-bold" aria-label="Vai alla pagina di login">Accedi qui</a>
                         </p>
                     </footer>
                 </div>

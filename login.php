@@ -5,10 +5,10 @@ require_once 'database.php';
 $errore = "";
 
 if (isset($_POST['submit'])) {
-    $email = $_POST['username']; // Usiamo l'email come username
+    $email = $_POST['username']; // Usa l'email come username
     $password = $_POST['password'];
 
-    // Cerchiamo l'utente nel database
+    // Cerca l'utente nel database
     $sql = "SELECT id, password, ruolo FROM utenti WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -41,9 +41,17 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="it">
 <head>
+    <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Login - Lost & Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Lost & Found - Registrazione</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
 </head>
 <body class="bg-light d-flex align-items-center vh-100">
     <div class="container">

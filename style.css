@@ -1,0 +1,73 @@
+/* --- VARIABILI GLOBALI --- */
+:root {
+    --verde-campus: #198754;       /* Il verde principale */
+    --verde-hover: #146c43;        /* Verde leggermente più scuro per i tasti */
+    --sfondo-chiaro: #f8f9fa;      /* Grigio chiarissimo per lo sfondo pagina */
+    --bianco: #ffffff;
+}
+
+/* --- STILE GENERALE --- */
+body {
+    background-color: var(--sfondo-chiaro);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+/* --- PERSONALIZZAZIONE COLORI BOOTSTRAP --- */
+
+/* Cambia tutti i background "primary" in verde */
+.bg-primary {
+    background-color: var(--verde-campus) !important;
+}
+
+/* Cambia il colore dei bottoni "primary" */
+.btn-primary {
+    background-color: var(--verde-campus) !important;
+    border-color: var(--verde-campus) !important;
+    font-weight: 600;
+    transition: all 0.3s ease; /* Animazione fluida al passaggio del mouse */
+}
+
+/* Effetto hover sui bottoni */
+.btn-primary:hover {
+    background-color: var(--verde-hover) !important;
+    border-color: var(--verde-hover) !important;
+    transform: translateY(-2px); /* Il bottone si alza leggermente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Cambia il colore dei testi "primary" */
+.text-primary {
+    color: var(--verde-campus) !important;
+}
+
+/* --- DESIGN DELLE CARD --- */
+.card {
+    border: none;
+    border-radius: 20px; /* Angoli molto arrotondati */
+    overflow: hidden;    /* Impedisce al contenuto di uscire dagli angoli tondi */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important; /* Ombra morbida */
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 1.5rem !important;
+}
+
+/* --- STILE DEI CAMPI DI INPUT --- */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: var(--verde-campus);
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25); /* Glow verde al clic */
+}
+
+/* --- SUCCESSO E ICONE --- */
+.success-icon {
+    color: var(--verde-campus);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
