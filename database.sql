@@ -23,3 +23,13 @@ CREATE TABLE oggetti (
     id_inseritore INT,
     FOREIGN KEY (id_inseritore) REFERENCES utenti(id) ON DELETE SET NULL
 );
+
+CREATE TABLE oggetti_ritrovati (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    categoria ENUM('Elettronica', 'Vestiti', 'Materiale scolastico', 'Altro') NOT NULL,
+    luogo VARCHAR(255) NOT NULL,
+    data_ritrovamento DATE NOT NULL,
+    foto VARCHAR(255) DEFAULT NULL,
+    data_inserimento TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
