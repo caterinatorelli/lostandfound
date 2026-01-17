@@ -4,9 +4,8 @@
 
 <html lang="it">
     <head>
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <title> <?php echo $templateParams["titolo"] ?> </title>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+       <link rel="stylesheet" href="css/style.css"><title> <?php echo $templateParams["titolo"] ?> </title>
     </head>
     <body class="d-flex flex-column min-vh-100">
         <nav class=" navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
