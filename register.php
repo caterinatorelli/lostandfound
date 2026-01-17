@@ -1,4 +1,6 @@
 <?php
+    // Pagina di registrazione
+
     require_once("templates/bootstrap.php");
 
     $templateParams["titolo"] = "Lost and Found - Register";

@@ -1,4 +1,6 @@
 <?php
+    // Endpoint API per la creazione di un nuovo utente
+
     require_once("templates/bootstrap.php");
 
     if (isUserLoggedIn()) {

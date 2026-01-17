@@ -1,4 +1,6 @@
 <?php
+    // Pagina per il login
+
     require_once("templates/bootstrap.php");
 
     $templateParams["titolo"] = "Lost and Found - Login";

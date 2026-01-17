@@ -1,4 +1,7 @@
 <?php
+    // Endpoint API per il login dell'utente
+    // TODO: fix user login
+
     require_once("templates/bootstrap.php");
 
     if (isUserLoggedIn()) {

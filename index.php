@@ -1,4 +1,6 @@
 <?php
+    // Codice per la creazione della landing page del sito
+
     require_once("templates/bootstrap.php");
 
     $templateParams["titolo"] = "Lost and Found - Home";

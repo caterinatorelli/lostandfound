@@ -1,4 +1,6 @@
 <?php
+    // File contenente funzioni di supporto al programma
+
     function isUserLoggedIn() {
         return !empty($_SESSION["user_id"]);
     }
