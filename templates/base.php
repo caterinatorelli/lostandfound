@@ -1,3 +1,9 @@
+<?php 
+    if (str_contains($templateParams["nome"], "admin")) {
+        enforceAdmin();
+    }
+?>
+
 <!DOCTYPE html>
 
 <!-- Codice HTML della struttura principale della pagina, contenente navbar e footer -->
