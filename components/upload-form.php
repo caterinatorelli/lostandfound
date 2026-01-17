@@ -73,7 +73,7 @@
                     <p class="mb-4">L'oggetto e la foto sono stati correttamente salvati.</p>
                     <div class="d-grid gap-2">
                         <a href="upload.php" class="btn btn-primary">Inserisci un altro</a>
-                        <a href="upload.php" class="btn btn-outline-secondary">Vai alla lista oggetti</a>
+                        <a href="search-objects.php" class="btn btn-outline-secondary">Vai alla lista oggetti</a>
                     </div>
                 </div>
 
