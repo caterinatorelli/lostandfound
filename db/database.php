@@ -3,14 +3,14 @@
         private $db;
         
         private function getUser(string $username): array {
-            $query = "SELECT id, password, ruolo FROM utenti WHERE email = ?";
+            $query = "SELECT id, email, password, ruolo FROM utenti WHERE email = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("s", $username);
 
             $stmt->execute();
             $result = $stmt->get_result();
 
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_all(MYSQLI_ASSOC)[0];
         }
 
         public function __construct($host, $username, $password, $database, $port) {

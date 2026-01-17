@@ -4,6 +4,7 @@
 
 <html lang="it">
     <head>
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <title> <?php echo $templateParams["titolo"] ?> </title>
     </head>
@@ -18,13 +19,11 @@
 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="login.php">
-                            <?php if(!isset($_SESSION["user_id"])): ?>
-                                Login
-                            <?php else: ?>
-                                Logout
-                            <?php endif; ?>
-                        </a>
+                        <?php if(!isset($_SESSION["user_id"])): ?>
+                            <a class="nav-link active" href="login.php">Login</a>
+                        <?php else: ?>
+                            <a class="nav-link active" href="login-api.php">Logout</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
