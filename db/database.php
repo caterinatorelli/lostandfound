@@ -52,9 +52,9 @@
             return $stmt->execute();
         }
 
-        // Nuovi metodi per la pagina "cerca oggetti" e per creare richieste "È mio"
+        // New methods for the "search objects" page and to create "It's mine" requests
         /**
-         * Restituisce gli oggetti segnalati (oggetti_ritrovati) con info inseritore se presente
+         * Returns the reported objects (oggetti_ritrovati) with inserter info if present
          * @return array
          */
         public function getFoundObjects(): array {
@@ -69,7 +69,7 @@
         }
 
         /**
-         * Crea una richiesta di claim semplice nella tabella richieste
+         * Creates a simple claim request in the richieste table
          * @param int $objectId
          * @param int $claimerId
          * @param string|null $message
@@ -80,6 +80,52 @@
             $stmt = $this->db->prepare($query);
             if (!$stmt) return false;
             $stmt->bind_param("iis", $objectId, $claimerId, $message);
+            return $stmt->execute();
+        }
+
+        /**
+         * Returns the reports made by the user
+         * @param int $userId
+         * @return array
+         */
+        public function getUserReports(int $userId): array {
+            $query = "SELECT * FROM oggetti_ritrovati WHERE id_inseritore = ? ORDER BY data_inserimento DESC";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Returns pending claims for a reported object
+         * @param int $objectId
+         * @return array
+         */
+        public function getPendingClaimsForReport(int $objectId): array {
+            $query = "SELECT r.*, u.email AS richiedente_email, u.nome AS richiedente_nome
+                      FROM richieste r
+                      LEFT JOIN utenti u ON r.richiedente_id = u.id
+                      WHERE r.oggetto_id = ? AND r.stato = 'pending'
+                      ORDER BY r.creato DESC";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $objectId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Updates the status of a claim
+         * @param int $claimId
+         * @param string $status ('accettata' or 'rifiutata')
+         * @return bool
+         */
+        public function updateClaimStatus(int $claimId, string $status): bool {
+            $query = "UPDATE richieste SET stato = ? WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) return false;
+            $stmt->bind_param("si", $status, $claimId);
             return $stmt->execute();
         }
     }

@@ -2,15 +2,19 @@
     require_once(__DIR__ . "/templates/bootstrap.php"); // avvia sessione e inizializza $db_obj
     require_once(__DIR__ . "/utils/functions.php");
 
+    header('Content-Type: application/json');
+
     // Solo POST
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        header('Location: index.php');
+        http_response_code(405);
+        echo json_encode(['success' => false, 'error' => 'Metodo non permesso']);
         exit;
     }
 
     // Utente deve essere loggato
     if (!isUserLoggedIn()) {
-        header('Location: login.php');
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => 'Utente non loggato']);
         exit;
     }
 
@@ -19,16 +23,19 @@
     $message = isset($_POST['message']) ? trim($_POST['message']) : 'Richiesta da utente.';
 
     if ($objectId <= 0) {
-        $back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-        header("Location: {$back}?error=invalid_object");
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'ID oggetto non valido']);
         exit;
     }
 
     // Salva la richiesta semplice (assume che $db_obj->createClaimRequest esista)
-    $db_obj->createClaimRequest($objectId, (int)$_SESSION['user_id'], $message);
+    $result = $db_obj->createClaimRequest($objectId, (int)$_SESSION['user_id'], $message);
 
-    // Torna alla pagina precedente (referer) o a index.php con messaggio di successo
-    $back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-    header("Location: {$back}?msg=request_sent");
+    if ($result) {
+        echo json_encode(['success' => true]);
+    } else {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Errore nel salvataggio']);
+    }
     exit;
 ?>

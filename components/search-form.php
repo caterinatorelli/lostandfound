@@ -32,9 +32,9 @@
                                     <p class="small text-muted"><?php echo nl2br(htmlspecialchars($it['descrizione'])); ?></p>
                                 <?php endif; ?>
 
-                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div class="d-flex justify-content-between align-items-center mt-3 claim-section" data-object-id="<?php echo (int)$it['id']; ?>">
                                     <?php if(isUserLoggedIn()): ?>
-                                        <form action="/claim-api.php" method="POST" class="d-flex gap-2 w-100">
+                                        <form action="/claim-api.php" method="POST" class="claim-form d-flex gap-2 w-100">
                                             <input type="hidden" name="object_id" value="<?php echo (int)$it['id']; ?>">
                                             <input type="hidden" name="message" value="Chiedo il ritiro dell'oggetto.">
                                             <button type="submit" class="btn btn-success w-100 claim-btn">È mio</button>
@@ -55,3 +55,5 @@
         </div>
     </div>
 </div>
+
+<script src="scripts/claim.js"></script>
