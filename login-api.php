@@ -1,9 +1,6 @@
 <?php
     // Endpoint API per il login dell'utente
     require_once("templates/bootstrap.php");
-    
-    if (isUserLoggedIn()) echo "Logged";
-    else echo "Not logged";
 
     if (isUserLoggedIn()) {
         echo "Logged in";
