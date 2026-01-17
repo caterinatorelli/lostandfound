@@ -25,14 +25,14 @@ body {
     background-color: var(--verde-campus) !important;
     border-color: var(--verde-campus) !important;
     font-weight: 600;
-    transition: all 0.3s ease; /* Animazione fluida al passaggio del mouse */
+    transition: all 0.3s ease;
 }
 
 /* Effetto hover sui bottoni */
 .btn-primary:hover {
     background-color: var(--verde-hover) !important;
     border-color: var(--verde-hover) !important;
-    transform: translateY(-2px); /* Il bottone si alza leggermente */
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -44,9 +44,9 @@ body {
 /* --- DESIGN DELLE CARD --- */
 .card {
     border: none;
-    border-radius: 20px; /* Angoli molto arrotondati */
-    overflow: hidden;    /* Impedisce al contenuto di uscire dagli angoli tondi */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important; /* Ombra morbida */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
 }
 
 .card-header {
@@ -63,11 +63,26 @@ body {
 
 .form-control:focus {
     border-color: var(--verde-campus);
-    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25); /* Glow verde al clic */
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
 }
 
 /* --- SUCCESSO E ICONE --- */
 .success-icon {
     color: var(--verde-campus);
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* --- TITOLI E NAVBAR (MODIFICATI PER TE) --- */
+
+/* Stile per la scritta "Lost and Found" e Logo */
+.navbar-brand {
+    font-size: 1.8rem;  /* Grandezza scritta titolo */
+    font-weight: 700;   /* Grassetto */
+    letter-spacing: 0.5px;
+}
+
+/* Stile per i link "Login" / "Logout" */
+.nav-link {
+    font-size: 1.2rem;  /* Grandezza scritta login */
+    font-weight: 500;
 }

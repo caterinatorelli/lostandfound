@@ -15,7 +15,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <div class="col-3 text-start">
+                    <img src="uploads/lostandfound.png" alt="Logo" style="width: 120px; height: auto;">
+                </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <?php if(!isset($_SESSION["user_id"])): ?>
