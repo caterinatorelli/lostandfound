@@ -9,16 +9,33 @@
        <title> <?php echo $templateParams["titolo"] ?> </title>
     </head>
     <body class="d-flex flex-column min-vh-100">
-        <nav class=" navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Lost and Found</a>
+                <a class="navbar-brand" href="#">
+                    <img src="img/lostandfound.png" alt="Lost and found" width="60" height="60">
+                    Lost and Found
+                </a>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-3 text-start">
-                    <img src="uploads/lostandfound.png" alt="Logo" style="width: 120px; height: auto;">
-                </div>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <?php if(!isset($_SESSION["user_id"])): ?>
