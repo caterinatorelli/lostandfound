@@ -86,3 +86,42 @@ body {
     font-size: 1.2rem;  /* Grandezza scritta login */
     font-weight: 500;
 }
+
+/* --- STILI PER LA PAGINA CERCA OGGETTI --- */
+.search-objects-container {
+    background: linear-gradient(135deg, var(--sfondo-chiaro) 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.page-title {
+    color: var(--verde-campus);
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.found-object-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.found-object-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.object-image {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.claim-btn {
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.claim-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+}
