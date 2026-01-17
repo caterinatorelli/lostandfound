@@ -17,7 +17,7 @@
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.php">
                     <img src="img/lostandfound.png" alt="Lost and found" width="60" height="60">
                     Lost and Found
                 </a>
