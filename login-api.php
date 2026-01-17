@@ -1,10 +1,9 @@
 <?php
     // Endpoint API per il login dell'utente
-    // TODO: fix user login
-
     require_once("templates/bootstrap.php");
 
     if (isUserLoggedIn()) {
+        echo "Logged in";
         destroySession();
         header("Location: index.php");
         exit();
@@ -19,8 +18,8 @@
     }
 
     if (isUserLoggedIn()) {
-        //header("Location: index.php");
+        header("Location: index.php");
     } else {
-        //header("Location: login.php?error");
+        header("Location: login.php?error");
     }
 ?>

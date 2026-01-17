@@ -1,14 +1,14 @@
 <?php
     // File contenente funzioni di supporto al programma
 
-    function isUserLoggedIn() {
+    function isUserLoggedIn(): bool {
         return !empty($_SESSION["user_id"]);
     }
 
     function regiserLoggedUser(array $user): void {
         $_SESSION["user_id"] = $user["id"];
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["nome"] = $user["nome"];
+        $_SESSION["username"] = $user["email"];
+        $_SESSION["ruolo"] = $user["ruolo"];
     }
 
     function destroySession() {
