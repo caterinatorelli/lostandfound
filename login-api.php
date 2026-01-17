@@ -3,7 +3,6 @@
     require_once("templates/bootstrap.php");
 
     if (isUserLoggedIn()) {
-        echo "Logged in";
         destroySession();
         header("Location: index.php");
         exit();
