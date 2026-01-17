@@ -9,7 +9,7 @@
         <h2>Chi siamo</h2>
         <div class="divider"></div>
         <p>
-            Benvenuti sulla piattaforma ufficiale del Campus. Semplifichiamo il ritrovamento dei tuoi oggetti smarriti. 
+            Benvenuti sulla piattaforma Lost&Found del Campus di Cesena. Semplifichiamo il ritrovamento dei tuoi oggetti smarriti. 
             Connettiamo chi ha perso qualcosa con chi l'ha ritrovato tramite un sistema rapido e sicuro, rendendo la restituzione semplice grazie alla nostra community.
         </p>
     </div>
