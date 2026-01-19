@@ -1,17 +1,3 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Lost & Found - Registrazione</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"><style>
-        .success-icon { font-size: 4rem; color: #198754; }
-        .card { border-radius: 15px; border: none; }
-        .btn-primary { border-radius: 8px; padding: 10px 20px; }
-    </style>
-</head>
-<body class="bg-light">
-
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -87,6 +73,3 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
