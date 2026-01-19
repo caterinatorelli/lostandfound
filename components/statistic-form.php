@@ -64,7 +64,6 @@
     const datiLuoghiJS = <?php echo json_encode($datiLuoghi); ?> || [];
     const datiCategorieJS = <?php echo json_encode($datiCategorie); ?> || [];
 
-    // Ora 'Chart' esiste, quindi 'creaGrafico' funzionerà
     document.addEventListener("DOMContentLoaded", function() {
         creaGrafico('canvasLuoghi', datiLuoghiJS, 'Distribuzione per Luogo');
         creaGrafico('canvasCategorie', datiCategorieJS, 'Distribuzione per Categoria');
