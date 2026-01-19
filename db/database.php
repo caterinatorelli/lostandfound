@@ -128,5 +128,33 @@
             $stmt->bind_param("si", $status, $claimId);
             return $stmt->execute();
         }
+
+        public function getOpenCases(): array {
+            $query = "SELECT * FROM richieste WHERE stato = 'accettata'";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getRequests(): array {
+            $query = "SELECT * FROM richieste WHERE stato = 'pending'";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getObject(int $objectId): array {
+            $query = "SELECT * FROM oggetti_ritrovati WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $objectId);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 ?>
