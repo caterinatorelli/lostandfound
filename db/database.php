@@ -147,14 +147,14 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function getObject(int $objectId): array {
-            $query = "SELECT * FROM oggetti_ritrovati WHERE id = ?";
+        public function getSubmitter(array $object): array {
+            $query = "SELECT * FROM utenti WHERE id = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param("i", $objectId);
+            $stmt->bind_param("i", $object["id_inseritore"]);
             $stmt->execute();
-
+            
             $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetch_assoc();
         }
     }
 ?>
