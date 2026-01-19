@@ -5,7 +5,7 @@
                 <h1 class="text-center h3 mb-4">Log in to Lost and Found</h1>
                 
                 <?php if(isset($_GET['error'])): ?>
-                    <div class="alert alert-danger">User does not exist or passowrd is wrong</div>
+                    <div class="alert alert-danger">User does not exist or password is wrong</div>
                 <?php endif; ?>
 
                 <form action="login-api.php" method="POST">
