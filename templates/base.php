@@ -23,35 +23,40 @@
                 </a>
                 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
+                    <?php if (isUserLoggedIn()): ?>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="search-objects.php">Cerca oggetti</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="statistic.php">Statistiche</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php echo $_SESSION["username"]; ?>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="my-reports.php">I tuoi report</a></li>
+                                    <li><a class="dropdown-item" href="login-api.php">Logout</a></li>
+                                    <?php if ($_SESSION["ruolo"] == 'admin'): ?>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="admin.php">Admin panel</a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    <?php else: ?>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="login.php">Login</a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <?php if(!isset($_SESSION["user_id"])): ?>
-                            <a class="nav-link active" href="login.php">Login</a>
-                        <?php else: ?>
-                            <a class="nav-link active" href="login-api.php">Logout</a>
-                        <?php endif; ?>
-                    </li>
-                </ul>
             </div>
         </nav>
 
