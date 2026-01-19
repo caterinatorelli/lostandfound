@@ -1,6 +1,11 @@
 <?php
 require_once("templates/bootstrap.php");
 
+if (!isUserLoggedIn()) {
+    header("Location: login.php");
+    exit();
+}
+
 $stato_inserimento = "form";
 $errore_msg = "";
 

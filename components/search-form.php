@@ -1,4 +1,5 @@
 <div class="container-fluid search-objects-container py-5">
+    <?php $items = $templateParams["items"] ?? []; ?>
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10">
             <h1 class="text-center mb-4 page-title">Cerca Oggetti Ritrovati</h1>
@@ -34,7 +35,7 @@
 
                                 <div class="d-flex justify-content-between align-items-center mt-3 claim-section" data-object-id="<?php echo (int)$it['id']; ?>">
                                     <?php if(isUserLoggedIn()): ?>
-                                        <form action="/claim-api.php" method="POST" class="claim-form d-flex gap-2 w-100">
+                                        <form action="claim-api.php" method="POST" class="claim-form d-flex gap-2 w-100">
                                             <input type="hidden" name="object_id" value="<?php echo (int)$it['id']; ?>">
                                             <input type="hidden" name="message" value="Chiedo il ritiro dell'oggetto.">
                                             <button type="submit" class="btn btn-success w-100 claim-btn">È mio</button>

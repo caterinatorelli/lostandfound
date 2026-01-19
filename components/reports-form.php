@@ -1,12 +1,18 @@
 <?php
 require_once(__DIR__ . "/../utils/functions.php");
 
+$reports = $templateParams["reports"] ?? [];
+$message = $templateParams["message"] ?? '';
 ?>
 <div class="container-fluid py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10">
             <h1 class="text-center mb-4 page-title">Le Mie Segnalazioni</h1>
             <p class="text-center text-muted mb-5">Visualizza gli oggetti che hai segnalato e gestisci le richieste di ritiro.</p>
+
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-success text-center"><?php echo htmlspecialchars($message); ?></div>
+            <?php endif; ?>
 
             <?php if(empty($reports)): ?>
                 <div class="alert alert-info text-center">Non hai ancora fatto segnalazioni.</div>
@@ -43,16 +49,22 @@ require_once(__DIR__ . "/../utils/functions.php");
                                                         <small class="text-muted">Richiesto il <?php echo htmlspecialchars($claim['creato']); ?></small>
                                                     </div>
                                                     <div>
-                                                        <form action="/manage-claim-api.php" method="POST" class="d-inline">
-                                                            <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
-                                                            <input type="hidden" name="action" value="accept">
-                                                            <button type="submit" class="btn btn-success btn-sm">Accetta</button>
-                                                        </form>
-                                                        <form action="/manage-claim-api.php" method="POST" class="d-inline ms-2">
-                                                            <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
-                                                            <input type="hidden" name="action" value="reject">
-                                                            <button type="submit" class="btn btn-danger btn-sm">Rifiuta</button>
-                                                        </form>
+                                                        <?php if ($claim['stato'] === 'accettata'): ?>
+                                                            <span class="badge bg-success">Oggetto restituito!</span>
+                                                        <?php elseif ($claim['stato'] === 'rifiutata'): ?>
+                                                            <span class="badge bg-danger">Richiesta rifiutata</span>
+                                                        <?php else: ?>
+                                                            <form action="manage-claim-api.php" method="POST" class="d-inline">
+                                                                <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
+                                                                <input type="hidden" name="action" value="accept">
+                                                                <button type="submit" class="btn btn-success btn-sm">Accetta</button>
+                                                            </form>
+                                                            <form action="manage-claim-api.php" method="POST" class="d-inline ms-2">
+                                                                <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
+                                                                <input type="hidden" name="action" value="reject">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Rifiuta</button>
+                                                            </form>
+                                                        <?php endif; ?>
                                                     </div>
                                                 </li>
                                             <?php endforeach; ?>

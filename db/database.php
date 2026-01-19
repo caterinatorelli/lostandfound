@@ -43,12 +43,12 @@
             $stmt->execute();
         }
 
-        public function insertOggetto($nome, $categoria, $luogo, $data, $foto, $id_inseritore) {
+        public function insertOggetto($nome, $categoria, $luogo, $data, $foto, $userId) {
             $query = "INSERT INTO oggetti_ritrovati (nome, categoria, luogo, data_ritrovamento, foto, id_inseritore) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
             if (!$stmt) return false; 
             
-            $stmt->bind_param("sssssi", $nome, $categoria, $luogo, $data, $foto, $id_inseritore);
+            $stmt->bind_param("sssssi", $nome, $categoria, $luogo, $data, $foto, $userId);
             return $stmt->execute();
         }
 
@@ -61,6 +61,7 @@
             $query = "SELECT o.*, u.id AS inseritore_id, u.email AS inseritore_email, u.nome AS inseritore_nome
                       FROM oggetti_ritrovati o
                       LEFT JOIN utenti u ON o.id_inseritore = u.id
+                      WHERE o.stato != 'returned'
                       ORDER BY o.data_inserimento DESC";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
@@ -129,8 +130,39 @@
             return $stmt->execute();
         }
 
+        /**
+         * Updates the status of an object
+         * @param int $objectId
+         * @param string $status
+         * @return bool
+         */
+        public function updateObjectStatus(int $objectId, string $status): bool {
+            $query = "UPDATE oggetti_ritrovati SET stato = ? WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            if (!$stmt) return false;
+            $stmt->bind_param("si", $status, $objectId);
+            return $stmt->execute();
+        }
+
+        /**
+         * Checks if the user is authorized to manage a claim (i.e., is the owner of the reported object)
+         * @param int $claimId
+         * @param int $userId
+         * @return bool
+         */
+        public function isUserAuthorizedForClaim(int $claimId, int $userId): bool {
+            $query = "SELECT r.id FROM richieste r
+                      JOIN oggetti_ritrovati o ON r.oggetto_id = o.id
+                      WHERE r.id = ? AND o.id_inseritore = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $claimId, $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->num_rows > 0;
+        }
+
         public function getOpenCases(): array {
-            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'approved'";
+            $query = "SELECT * FROM richieste WHERE stato = 'accettata'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
@@ -139,7 +171,7 @@
         }
 
         public function getRequests(): array {
-            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'pending'";
+            $query = "SELECT * FROM richieste WHERE stato = 'pending'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
@@ -155,6 +187,21 @@
             
             $result = $stmt->get_result();
             return $result->fetch_assoc();
+        }
+
+        /**
+         * Checks if a pending claim exists for the object by the user
+         * @param int $objectId
+         * @param int $userId
+         * @return bool
+         */
+        public function hasPendingClaim(int $objectId, int $userId): bool {
+            $query = "SELECT id FROM richieste WHERE oggetto_id = ? AND richiedente_id = ? AND stato = 'pending'";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("ii", $objectId, $userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->num_rows > 0;
         }
     }
 ?>
