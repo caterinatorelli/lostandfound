@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS oggetti_ritrovati (
     data_ritrovamento DATE NOT NULL,
     foto VARCHAR(255),
     id_inseritore INT,
-    data_inserimento TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    data_inserimento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    stato ENUM('pending', 'approved', 'refused') DEFAULT 'pending' NOT NULL
 );
 
 -- Tabella Richieste (per "È mio")

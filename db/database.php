@@ -130,7 +130,7 @@
         }
 
         public function getOpenCases(): array {
-            $query = "SELECT * FROM richieste WHERE stato = 'accettata'";
+            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'approved'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
@@ -139,7 +139,7 @@
         }
 
         public function getRequests(): array {
-            $query = "SELECT * FROM richieste WHERE stato = 'pending'";
+            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'pending'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
