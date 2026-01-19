@@ -162,7 +162,7 @@
         }
 
         public function getOpenCases(): array {
-            $query = "SELECT * FROM richieste WHERE stato = 'accettata'";
+            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'accettata'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
@@ -171,7 +171,7 @@
         }
 
         public function getRequests(): array {
-            $query = "SELECT * FROM richieste WHERE stato = 'pending'";
+            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'pending'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
@@ -202,6 +202,26 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->num_rows > 0;
+        }
+
+        public function approveRequest(int $oggettoId): void {
+            $query = "UPDATE oggetti_ritrovati SET stato = 'approved' WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $oggettoId);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $stmt->close();
+        }
+
+        public function denyRequest(int $oggettoId): void {
+            $query = "UPDATE oggetti_ritrovati SET stato = 'refused' WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $oggettoId);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $stmt->close();
         }
     }
 ?>

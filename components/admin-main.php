@@ -8,13 +8,13 @@
         <h1>Open requests</h1>
         <h2>There are currently <?php echo count($openRequests); ?> open requests</h2>
 
-        <a href="manage-requests" class="btn btn-primary">Go requests</a>
+        <a href="manage-requests.php" class="btn btn-primary">Go to open requests</a>
     </div>
 
     <div class="hero-box">
-        <h1>Open cases</h1>
-        <h2>There are currently <?php echo count($openCases); ?> open cases</h2>
+        <h1>Open reports</h1>
+        <h2>There are currently <?php echo count($openCases); ?> open reports</h2>
 
-        <a href="search-objects.php" class="btn btn-primary">Go cases</a>
+        <a href="search-objects.php" class="btn btn-primary">Go to reports</a>
     </div>
 </div>

@@ -8,21 +8,23 @@
             There are no open requests
         </div>
     <?php else: ?>
-        <?php 
-            foreach( $requests as $request ):
-                $object = $db_obj->getObject($request["oggetto_id"]);
-        ?>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="uploads/<?php echo $object["foto"] ?>" class="img-fluid rounded-start" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $object["nome"] ?></h5>
-                            <p class="card-text"><?php echo $object["categoria"] ?></p>
-                            <p class="card-text"><small class="text-body-secondary"><?php echo $object["data_ritrovamento"] ?></small></p>
-                        </div>
+        <?php foreach( $requests as $request ): ?>
+            <div class="card" style="width: 20rem;">
+                <img src="uploads/<?php echo $request['foto'] ?>" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $request['nome'] ?></h5>
+                    <p class="card-text">
+                        Submitted by: <?php echo $db_obj->getSubmitter( $request)['email'] ?>
+                        <br>
+                        Class: <?php echo $request['luogo'] ?>
+                        <br>
+                        Date: <?php echo $request['data_ritrovamento'] ?>
+                        <br>
+                        Categoria: <?php echo $request['categoria'] ?>
+                    </p>
+                    <div class="d-grid gap-2 d-md-block">
+                        <a class="btn btn-outline-success" href="revision-api.php?o=<?php echo $request['id'] ?>&m=a">Approve</a>
+                        <a class="btn btn-outline-danger" href="revision-api.php?o=<?php echo $request['id'] ?>&m=d">Deny</a>
                     </div>
                 </div>
             </div>
