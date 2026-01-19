@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+</head>
 
 
 <div class="container stats-wrapper">
@@ -69,67 +67,12 @@
     </div>
 </div>
 
+<script src="scripts/statistic.js"></script>
 <script>
-    // Configurazione Colori
-    const coloriCampus = [
-        '#198754', // Verde Campus (Principale)
-        '#20c997', // Verde Acqua
-        '#ffc107', // Giallo (Accento)
-        '#0dcaf0', // Azzurro (Accento)
-        '#6c757d', // Grigio
-        '#146c43', // Verde Scuro
-        '#d63384'  // Rosa (per contrasto se serve)
-    ];
-
-    function creaGrafico(idElemento, datiPHP, titoloGrafico) {
-        if (!datiPHP || datiPHP.length === 0) return;
-
-        const etichette = datiPHP.map(d => d.etichetta);
-        const valori = datiPHP.map(d => d.totale);
-
-        const ctx = document.getElementById(idElemento).getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: etichette,
-                datasets: [{
-                    label: 'Numero Oggetti',
-                    data: valori,
-                    backgroundColor: coloriCampus,
-                    borderColor: '#ffffff',
-                    borderWidth: 2,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: { 
-                        position: 'bottom',
-                        labels: {
-                            font: { size: 12, family: "'Segoe UI', sans-serif" },
-                            padding: 20,
-                            usePointStyle: true
-                        }
-                    },
-                    tooltip: {
-                        backgroundColor: '#198754', // Tooltip Verde
-                        titleFont: { size: 14 },
-                        bodyFont: { size: 14 },
-                        padding: 10,
-                        cornerRadius: 10
-                    }
-                },
-                layout: {
-                    padding: 10
-                }
-            }
-        });
-    }
-
     const datiLuoghiJS = <?php echo json_encode($datiLuoghi); ?> || [];
     const datiCategorieJS = <?php echo json_encode($datiCategorie); ?> || [];
+    console.log("Luoghi:", datiLuoghiJS);
+    console.log("Categorie:", datiCategorieJS);
 
     creaGrafico('canvasLuoghi', datiLuoghiJS, 'Distribuzione per Luogo');
     creaGrafico('canvasCategorie', datiCategorieJS, 'Distribuzione per Categoria');
@@ -137,4 +80,3 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>

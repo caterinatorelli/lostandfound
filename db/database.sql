@@ -11,18 +11,6 @@ CREATE TABLE IF NOT EXISTS utenti (
     nome VARCHAR(100)
 );
 
--- Tabella Oggetti (semplice, senza vincoli FK)
-CREATE TABLE IF NOT EXISTS oggetti (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(150) NOT NULL,
-    descrizione TEXT,
-    categoria VARCHAR(100),
-    luogo VARCHAR(255),
-    data_ritrovamento DATE,
-    stato ENUM('disponibile','restituito') DEFAULT 'disponibile',
-    id_inseritore INT
-);
-
 -- Tabella Oggetti Ritrovati (semplice)
 CREATE TABLE IF NOT EXISTS oggetti_ritrovati (
     id INT AUTO_INCREMENT PRIMARY KEY,
