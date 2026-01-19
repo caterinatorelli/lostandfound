@@ -57,12 +57,16 @@
 </div>
 
 <script src="scripts/statistic.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+    // Recupera i dati PHP
     const datiLuoghiJS = <?php echo json_encode($datiLuoghi); ?> || [];
     const datiCategorieJS = <?php echo json_encode($datiCategorie); ?> || [];
-    console.log("Luoghi:", datiLuoghiJS);
-    console.log("Categorie:", datiCategorieJS);
 
-    creaGrafico('canvasLuoghi', datiLuoghiJS, 'Distribuzione per Luogo');
-    creaGrafico('canvasCategorie', datiCategorieJS, 'Distribuzione per Categoria');
+    // Ora 'Chart' esiste, quindi 'creaGrafico' funzionerà
+    document.addEventListener("DOMContentLoaded", function() {
+        creaGrafico('canvasLuoghi', datiLuoghiJS, 'Distribuzione per Luogo');
+        creaGrafico('canvasCategorie', datiCategorieJS, 'Distribuzione per Categoria');
+    });
 </script>
