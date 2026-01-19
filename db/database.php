@@ -2,7 +2,7 @@
     class Database {
         private $db;
         
-        private function getUser(string $username): array {
+        private function getUser(string $username): array | null {
             $query = "SELECT id, email, password, ruolo FROM utenti WHERE email = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("s", $username);
@@ -10,7 +10,7 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
-            return $result->fetch_all(MYSQLI_ASSOC)[0];
+            return $result->fetch_assoc();
         }
 
         public function __construct($host, $username, $password, $database, $port) {
@@ -23,13 +23,13 @@
          * @param string $password user's password
          * @return array Array containing the user information
          */
-        public function checkLogin(string $username, string $password): array {
+        public function checkLogin(string $username, string $password): array | null {
             $user = $this->getUser($username);
 
             if (password_verify($password, password_hash($password, PASSWORD_DEFAULT))) {
                 return $user;
             } else {
-                return array();
+                return null;
             }
         }
 

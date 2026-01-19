@@ -11,7 +11,7 @@
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         $user = $db_obj->checkLogin($_POST["username"], $_POST["password"]);
 
-        if (!empty($user)) {
+        if ($user != null) {
             regiserLoggedUser($user);
         }
     }
