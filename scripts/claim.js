@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(this);
             const section = this.closest('.claim-section');
             
-            fetch('/lostandfound/claim-api.php', {
+            fetch('claim-api.php', {
                 method: 'POST',
                 body: formData
             })

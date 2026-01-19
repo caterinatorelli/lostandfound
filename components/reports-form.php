@@ -72,12 +72,12 @@ require_once(__DIR__ . "/../utils/functions.php");
                                                             <small class="text-muted">Richiesto il <?php echo htmlspecialchars($claim['creato']); ?></small>
                                                         </div>
                                                         <div>
-                                                            <form action="/manage-claim-api.php" method="POST" class="d-inline">
+                                                            <form action="manage-claim-api.php" method="POST" class="d-inline">
                                                                 <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
                                                                 <input type="hidden" name="action" value="accept">
                                                                 <button type="submit" class="btn btn-success btn-sm">Accetta</button>
                                                             </form>
-                                                            <form action="/manage-claim-api.php" method="POST" class="d-inline ms-2">
+                                                            <form action="manage-claim-api.php" method="POST" class="d-inline ms-2">
                                                                 <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
                                                                 <input type="hidden" name="action" value="reject">
                                                                 <button type="submit" class="btn btn-danger btn-sm">Rifiuta</button>

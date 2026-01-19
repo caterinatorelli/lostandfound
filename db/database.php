@@ -148,17 +148,19 @@
          * Checks if the user is authorized to manage a claim (i.e., is the owner of the reported object)
          * @param int $claimId
          * @param int $userId
-         * @return bool
+         * @return array | null
          */
-        public function isUserAuthorizedForClaim(int $claimId, int $userId): bool {
-            $query = "SELECT r.id FROM richieste r
+        public function isUserAuthorizedForClaim(int $claimId, int $userId): array | null {
+            $query = "SELECT r.id, o.id as oggetto_id 
+                      FROM richieste r
                       JOIN oggetti_ritrovati o ON r.oggetto_id = o.id
                       WHERE r.id = ? AND o.id_inseritore = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("ii", $claimId, $userId);
             $stmt->execute();
             $result = $stmt->get_result();
-            return $result->num_rows > 0;
+            
+            return $result->fetch_assoc();
         }
 
         public function getOpenCases(): array {
@@ -187,6 +189,16 @@
             
             $result = $stmt->get_result();
             return $result->fetch_assoc();
+        }
+
+        public function getObject(int $objectId): array {
+            $query = "SELECT * FROM oggetti_ritrovati WHERE id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $objectId);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -225,33 +237,27 @@
         }
         
         public function acceptClaim(int $claimId, int $objectId): bool {
-            // Iniziamo una transazione per assicurarci che tutto avvenga insieme
             $this->db->begin_transaction();
 
             try {
-                // 1. Aggiorna la richiesta specifica a 'accettata'
                 $query1 = "UPDATE richieste SET stato = 'accettata' WHERE id = ?";
                 $stmt1 = $this->db->prepare($query1);
                 $stmt1->bind_param("i", $claimId);
                 $stmt1->execute();
 
-                // 2. Aggiorna l'oggetto a 'restituito'
                 $query2 = "UPDATE oggetti_ritrovati SET stato = 'restituito' WHERE id = ?";
                 $stmt2 = $this->db->prepare($query2);
                 $stmt2->bind_param("i", $objectId);
                 $stmt2->execute();
 
-                // 3. Rifiuta tutte le ALTRE richieste pendenti per questo oggetto
                 $query3 = "UPDATE richieste SET stato = 'rifiutata' WHERE oggetto_id = ? AND id != ? AND stato = 'pending'";
                 $stmt3 = $this->db->prepare($query3);
                 $stmt3->bind_param("ii", $objectId, $claimId);
                 $stmt3->execute();
 
-                // Se siamo arrivati qui senza errori, confermiamo le modifiche
                 $this->db->commit();
                 return true;
             } catch (Exception $e) {
-                // In caso di errore, annulliamo tutto
                 $this->db->rollback();
                 return false;
             }
