@@ -25,35 +25,36 @@ if ($claimId <= 0 || !in_array($action, ['accept', 'reject'])) {
     exit;
 }
 
-if (!$db_obj->isUserAuthorizedForClaim($claimId, (int)$_SESSION['user_id'])) {
+$query = "SELECT r.id, o.id as oggetto_id 
+          FROM richieste r
+          JOIN oggetti_ritrovati o ON r.oggetto_id = o.id
+          WHERE r.id = ? AND o.id_inseritore = ?";
+$stmt = $db_obj->db->prepare($query);
+$stmt->bind_param("ii", $claimId, $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
     http_response_code(403);
-    echo json_encode(['success' => false, 'error' => 'Non autorizzato']);
+    echo json_encode(['success' => false, 'error' => 'Non autorizzato o richiesta inesistente']);
     exit;
 }
 
-$status = $action === 'accept' ? 'accettata' : 'rifiutata';
-$success = $db_obj->updateClaimStatus($claimId, $status);
+$row = $result->fetch_assoc();
+$objectId = $row['oggetto_id'];
+$success = false;
+
+if ($action === 'accept') {
+    $success = $db_obj->acceptClaim($claimId, $objectId);
+} else {
+    $success = $db_obj->rejectClaim($claimId);
+}
 
 if ($success) {
-    if ($action === 'accept') {
-        // Get objectId from claim
-        $query = "SELECT oggetto_id FROM richieste WHERE id = ?";
-        $stmt = $db_obj->db->prepare($query);
-        $stmt->bind_param("i", $claimId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $objectId = $row['oggetto_id'];
-            $db_obj->updateObjectStatus($objectId, 'returned');
-        }
-    }
-    // Redirect back with success
-    header("Location: my-reports.php?success=1&action=" . $action . "&claim_id=" . $claimId);
-    exit;
+    echo json_encode(['success' => true]);
 } else {
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Errore nell\'aggiornamento']);
+    echo json_encode(['success' => false, 'error' => 'Errore nell\'aggiornamento del database']);
 }
 exit;
 ?>
