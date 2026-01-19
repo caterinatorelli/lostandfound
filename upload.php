@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $categoria = $_POST["categoria"];
     $luogo = $_POST["luogo"];
     $data = $_POST["data"];
+    $id_inseritore = $_SESSION["user_id"];
     
     // Gestione Immagine
     $nome_foto = null;
@@ -29,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Salvataggio nel DB (se non ci sono errori precedenti)
     if ($stato_inserimento != "errore") {
-        $successo = $db_obj->insertOggetto($nome, $categoria, $luogo, $data, $nome_foto);
+        $successo = $db_obj->insertOggetto($nome, $categoria, $luogo, $data, $nome_foto, $id_inseritore);
         if ($successo) {
             $stato_inserimento = "successo";
         } else {

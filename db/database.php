@@ -43,12 +43,12 @@
             $stmt->execute();
         }
 
-        public function insertOggetto($nome, $categoria, $luogo, $data, $foto) {
-            $query = "INSERT INTO oggetti_ritrovati (nome, categoria, luogo, data_ritrovamento, foto) VALUES (?, ?, ?, ?, ?)";
+        public function insertOggetto($nome, $categoria, $luogo, $data, $foto, $id_inseritore) {
+            $query = "INSERT INTO oggetti_ritrovati (nome, categoria, luogo, data_ritrovamento, foto, id_inseritore) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
             if (!$stmt) return false; 
             
-            $stmt->bind_param("sssss", $nome, $categoria, $luogo, $data, $foto);
+            $stmt->bind_param("sssssi", $nome, $categoria, $luogo, $data, $foto, $id_inseritore);
             return $stmt->execute();
         }
 
