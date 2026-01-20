@@ -263,14 +263,56 @@
             }
         }
 
-        /**
-         * Rifiuta una singola richiesta
-         */
         public function rejectClaim(int $claimId): bool {
             $query = "UPDATE richieste SET stato = 'rifiutata' WHERE id = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("i", $claimId);
             return $stmt->execute();
+        }
+
+        public function deleteReport(int $objectId, int $userId, bool $isAdmin = false): bool {
+            $queryCheck = "SELECT id, id_inseritore, foto FROM oggetti_ritrovati WHERE id = ?";
+            $stmtCheck = $this->db->prepare($queryCheck);
+            $stmtCheck->bind_param("i", $objectId);
+            $stmtCheck->execute();
+            $result = $stmtCheck->get_result();
+
+            if ($result->num_rows === 0) {
+                return false;
+            }
+            $objData = $result->fetch_assoc();
+
+            if (!$isAdmin && $objData['id_inseritore'] != $userId) {
+                return false;
+            }
+
+            $this->db->begin_transaction();
+
+            try {
+                $queryReq = "DELETE FROM richieste WHERE oggetto_id = ?";
+                $stmtReq = $this->db->prepare($queryReq);
+                $stmtReq->bind_param("i", $objectId);
+                $stmtReq->execute();
+
+                $queryObj = "DELETE FROM oggetti_ritrovati WHERE id = ?";
+                $stmtObj = $this->db->prepare($queryObj);
+                $stmtObj->bind_param("i", $objectId);
+                $stmtObj->execute();
+
+                $this->db->commit();
+
+                if (!empty($objData['foto'])) {
+                    $filePath = __DIR__ . "/../uploads/" . $objData['foto'];
+                    if (file_exists($filePath)) {
+                        unlink($filePath);
+                    }
+                }
+
+                return true;
+            } catch (Exception $e) {
+                $this->db->rollback();
+                return false;
+            }
         }
     }
 ?>
