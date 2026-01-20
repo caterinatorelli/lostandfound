@@ -5,7 +5,7 @@
 <div class="home-wrapper">
     <?php if (count($requests) == 0): ?>
         <div class="alert alert-info">
-            There are no open requests
+            Non ci sono richieste aperte
         </div>
     <?php else: ?>
         <?php foreach( $requests as $request ): ?>
@@ -14,17 +14,17 @@
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $request['nome'] ?></h5>
                     <p class="card-text">
-                        Submitted by: <?php echo $db_obj->getSubmitter( $request)['email'] ?>
+                        Fatta da: <?php echo $db_obj->getSubmitter( $request)['email'] ?>
                         <br>
-                        Class: <?php echo $request['luogo'] ?>
+                        Luogo: <?php echo $request['luogo'] ?>
                         <br>
-                        Date: <?php echo $request['data_ritrovamento'] ?>
+                        Data ritrovamento: <?php echo $request['data_ritrovamento'] ?>
                         <br>
                         Categoria: <?php echo $request['categoria'] ?>
                     </p>
                     <div class="d-grid gap-2 d-md-block">
-                        <a class="btn btn-outline-success" href="revision-api.php?o=<?php echo $request['id'] ?>&m=a">Approve</a>
-                        <a class="btn btn-outline-danger" href="revision-api.php?o=<?php echo $request['id'] ?>&m=d">Deny</a>
+                        <a class="btn btn-outline-success" href="revision-api.php?o=<?php echo $request['id'] ?>&m=a">Accetta</a>
+                        <a class="btn btn-outline-danger" href="revision-api.php?o=<?php echo $request['id'] ?>&m=d">Rifiuta</a>
                     </div>
                 </div>
             </div>

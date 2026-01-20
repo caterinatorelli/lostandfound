@@ -5,16 +5,16 @@
 
 <div class="home-wrapper">
     <div class="hero-box">
-        <h1>Open requests</h1>
-        <h2>There are currently <?php echo count($openRequests); ?> open requests</h2>
+        <h1>Richieste in sospeso</h1>
+        <h2>ci sono attualmente  <?php echo count($openRequests); ?> richieste in sospeso</h2>
 
-        <a href="manage-requests.php" class="btn btn-primary">Go to open requests</a>
+        <a href="manage-requests.php" class="btn btn-primary">Vai alle richieste</a>
     </div>
 
     <div class="hero-box">
-        <h1>Open reports</h1>
-        <h2>There are currently <?php echo count($openCases); ?> open reports</h2>
+        <h1>Report aperti</h1>
+        <h2>Ci sono attualmente <?php echo count($openCases); ?> report aperti</h2>
 
-        <a href="search-objects.php" class="btn btn-primary">Go to reports</a>
+        <a href="search-objects.php" class="btn btn-primary">Vai ai reports</a>
     </div>
 </div>
