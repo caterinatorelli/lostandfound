@@ -164,7 +164,7 @@
         }
 
         public function getOpenCases(): array {
-            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'accettata'";
+            $query = "SELECT * FROM oggetti_ritrovati WHERE stato = 'approved'";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
 
