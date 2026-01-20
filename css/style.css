@@ -227,3 +227,19 @@ body {
 .card-header.bg-primary h1 {
     color: var(--bianco) !important;
 }
+/* serve per rendere accessibile la home*/
+.subtitle {
+    font-family: 'Montserrat', sans-serif; /* O il font che usavi per i titoli */
+    font-size: 1.5rem;      /* Regola la grandezza come preferisci */
+    font-weight: 600;       /* Grassetto */
+    margin-bottom: 10px;    /* Spaziatura */
+    color: #333;         
+}
+
+/* Stile per il titolo principale del box */
+.hero-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
