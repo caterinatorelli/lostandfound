@@ -29,13 +29,8 @@
                         Categoria: <?php echo $request['categoria'] ?>
                     </p>
                     <div class="d-grid gap-2 d-md-block">
-                        <!--
-                            <a class="btn btn-outline-success" href="revision-api.php?o=<?php echo $request['id'] ?>&m=a">Accetta</a>
-                            <a class="btn btn-outline-danger" href="revision-api.php?o=<?php echo $request['id'] ?>&m=d">Rifiuta</a>
-                        -->
-
-                        <button class="btn btn-outline-success" onclick="requestAction(true, <?php echo $request['id'] ?>)">Accetta</a>
-                        <button class="btn btn-outline-danger" onclick="requestAction(false, <?php echo $request['id'] ?>)">Rifiuta</a>
+                        <button class="btn btn-outline-success" onclick="requestAction(true, <?php echo $request['id'] ?>)">Accetta</button>
+                        <button class="btn btn-outline-danger" onclick="requestAction(false, <?php echo $request['id'] ?>)">Rifiuta</button>
                     </div>
                 </div>
             </div>
