@@ -2,13 +2,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-<h1 class="page-title">Lost & Found - Campus Cesena</h1>
 
 <main class="home-wrapper">
     
     <section class="hero-box" aria-labelledby="title-about">
         
-        <h2 id="title-about">Lost and Found</h2>
+        <h1 id="title-about">Lost and Found</h1>
         
         <p class="subtitle h2-style">Chi siamo</p>
         
@@ -22,7 +21,7 @@
 
     <section class="hero-box" aria-labelledby="title-policy">
         
-        <h2 id="title-policy">Policy</h2>
+        <h1 id="title-policy">Policy</h1>
         
         <p class="subtitle h2-style">La nostra politica</p>
         
