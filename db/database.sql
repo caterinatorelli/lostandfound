@@ -1,16 +1,13 @@
--- Creazione del Database (minimale)
 CREATE DATABASE IF NOT EXISTS campus_oggetti_smarriti;
 USE campus_oggetti_smarriti;
 
--- Tabella Utenti
 CREATE TABLE IF NOT EXISTS utenti (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    ruolo ENUM('admin','fruitore') DEFAULT 'fruitore',
+    ruolo ENUM('admin','fruitore') DEFAULT 'fruitore' NOT NULL
 );
 
--- Tabella Oggetti Ritrovati (semplice)
 CREATE TABLE IF NOT EXISTS oggetti_ritrovati (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -23,7 +20,6 @@ CREATE TABLE IF NOT EXISTS oggetti_ritrovati (
     stato ENUM('pending', 'approved', 'refused', 'restituito') DEFAULT 'pending' NOT NULL
 );
 
--- Tabella Richieste (per "È mio")
 CREATE TABLE IF NOT EXISTS richieste (
     id INT AUTO_INCREMENT PRIMARY KEY,
     oggetto_id INT NOT NULL,

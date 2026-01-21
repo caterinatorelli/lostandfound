@@ -15,7 +15,6 @@ $userId = $_SESSION['user_id'];
 $reports = $db_obj->getUserReports($userId);
 $templateParams["reports"] = $reports;
 
-// Handle success message
 if (isset($_GET['success']) && $_GET['success'] == '1') {
     $action = $_GET['action'] ?? '';
     $claimId = $_GET['claim_id'] ?? '';

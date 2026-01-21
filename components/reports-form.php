@@ -109,7 +109,6 @@ require_once(__DIR__ . "/../utils/functions.php");
                                         <?php else: ?>
                                             <ul class="list-group">
                                                 <?php foreach($claims as $claim): 
-                                                    // MODIFICA QUI: Usiamo solo email
                                                     $richiedente = htmlspecialchars($claim['richiedente_email']);
                                                 ?>
                                                     <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">

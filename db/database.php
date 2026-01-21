@@ -46,10 +46,6 @@
             return $stmt->execute();
         }
 
-        /**
-         * Returns the reported objects (oggetti_ritrovati) with inserter info
-         * MODIFICATO: Rimosso u.nome
-         */
         public function getFoundObjects(): array {
             $query = "SELECT o.*, u.id AS inseritore_id, u.email AS inseritore_email
                     FROM oggetti_ritrovati o
@@ -79,10 +75,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * Returns pending claims for a reported object
-         * MODIFICATO: Rimosso u.nome
-         */
         public function getPendingClaimsForReport(int $objectId): array {
             $query = "SELECT r.*, u.email AS richiedente_email
                       FROM richieste r
