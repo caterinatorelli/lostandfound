@@ -8,21 +8,21 @@ require_once(__DIR__ . "/../utils/functions.php");
             
             <?php if(isset($_GET['deleted'])): ?>
                 <div class="alert alert-success text-center" role="alert">
-                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    <span class="bi bi-check-circle-fill" aria-hidden="true"></span>
                     Segnalazione eliminata con successo.
                 </div>
             <?php endif; ?>
             
             <?php if(isset($_GET['success']) && $_GET['action'] == 'accept'): ?>
                 <div class="alert alert-success text-center" role="alert">
-                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    <span class="bi bi-check-circle-fill" aria-hidden="true"></span>
                     Richiesta accettata! L'oggetto è stato segnato come restituito.
                 </div>
             <?php endif; ?>
 
             <?php if(isset($_GET['error'])): ?>
                 <div class="alert alert-danger text-center" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
+                    <span class="bi bi-exclamation-triangle-fill" aria-hidden="true"></span>
                     Si è verificato un errore durante l'operazione.
                 </div>
             <?php endif; ?>
@@ -64,7 +64,7 @@ require_once(__DIR__ . "/../utils/functions.php");
                                             <input type="hidden" name="source" value="my-reports">
                                             <button type="submit" class="btn btn-sm btn-danger" 
                                                     aria-label="Elimina segnalazione: <?php echo htmlspecialchars($report['nome']); ?>">
-                                                <i class="bi bi-trash" aria-hidden="true"></i> Elimina
+                                                <span class="bi bi-trash" aria-hidden="true"></span> Elimina
                                             </button>
                                         </form>
                                     </div>
@@ -93,7 +93,7 @@ require_once(__DIR__ . "/../utils/functions.php");
 
                                     <?php if($report['stato'] === 'restituito'): ?>
                                         <div class="alert alert-success m-0" role="alert">
-                                            <i class="bi bi-check-circle-fill" aria-hidden="true"></i> 
+                                            <span class="bi bi-check-circle-fill" aria-hidden="true"></span> 
                                             Questo oggetto è stato segnato come restituito.
                                         </div>
                                     <?php elseif($report['stato'] === 'refused'): ?>

@@ -7,7 +7,7 @@
             
             <?php if(isset($_GET['deleted'])): ?>
                 <div class="alert alert-success text-center" role="alert">
-                    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    <span class="bi bi-check-circle-fill" aria-hidden="true"></span>
                     Oggetto eliminato con successo.
                 </div>
             <?php endif; ?>
@@ -41,7 +41,7 @@
                                     <?php if(!empty($it['categoria'])): ?>
                                         <p class="mb-1">
                                             <span class="visually-hidden">Categoria:</span>
-                                            <strong><i class="bi bi-tag" aria-hidden="true"></i></strong> 
+                                            <strong><span class="bi bi-tag" aria-hidden="true"></span></strong> 
                                             <?php echo htmlspecialchars($it['categoria']); ?>
                                         </p>
                                     <?php endif; ?>
@@ -49,7 +49,7 @@
                                     <?php if(!empty($it['luogo'])): ?>
                                         <p class="mb-1">
                                             <span class="visually-hidden">Luogo di ritrovamento:</span>
-                                            <strong><i class="bi bi-geo-alt" aria-hidden="true"></i></strong> 
+                                            <strong><span class="bi bi-geo-alt" aria-hidden="true"></span></strong> 
                                             <?php echo htmlspecialchars($it['luogo']); ?>
                                         </p>
                                     <?php endif; ?>
@@ -57,7 +57,7 @@
                                     <?php if(!empty($it['data_ritrovamento'])): ?>
                                         <p class="mb-1">
                                             <span class="visually-hidden">Data di ritrovamento:</span>
-                                            <strong><i class="bi bi-calendar" aria-hidden="true"></i></strong> 
+                                            <strong><span class="bi bi-calendar" aria-hidden="true"></span></strong> 
                                             <?php echo htmlspecialchars($it['data_ritrovamento']); ?>
                                         </p>
                                     <?php endif; ?>
@@ -106,12 +106,12 @@
                                             <?php if($isAdmin): ?>
                                                 <button type="submit" class="btn btn-danger btn-sm" 
                                                         aria-label="Admin: Elimina l'oggetto <?php echo htmlspecialchars($it['nome']); ?> dal sistema">
-                                                    <i class="bi bi-trash" aria-hidden="true"></i> Elimina (Admin)
+                                                    <span class="bi bi-trash" aria-hidden="true"></span> Elimina (Admin)
                                                 </button>
                                             <?php else: ?>
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" 
                                                         aria-label="Elimina la tua segnalazione per <?php echo htmlspecialchars($it['nome']); ?>">
-                                                    <i class="bi bi-trash" aria-hidden="true"></i> Elimina il mio oggetto
+                                                    <span class="bi bi-trash" aria-hidden="true"></span> Elimina il mio oggetto
                                                 </button>
                                             <?php endif; ?>
                                         </form>

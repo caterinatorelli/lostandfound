@@ -51,7 +51,8 @@
 
             <?php elseif ($stato_inserimento == "successo"): ?>
                 <div class="card shadow text-center p-5">
-                    <i class="bi bi-check-circle-fill success-icon mb-3" aria-hidden="true"></i>
+                    <span class="bi bi-check-circle-fill success-icon mb-3" aria-hidden="true"></span>
+                    
                     <h2 class="text-success">Ottimo lavoro!</h2>
                     <p class="mb-4">L'oggetto e la foto sono stati correttamente salvati.</p>
                     <div class="d-grid gap-2">
@@ -62,7 +63,9 @@
 
             <?php else: ?>
                 <div class="alert alert-danger shadow" role="alert">
-                    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Errore!</h4>
+                    <h2 class="alert-heading h4">
+                        <span class="bi bi-exclamation-triangle" aria-hidden="true"></span> Errore!
+                    </h2>
                     <p><?php echo $errore_msg; ?></p>
                     <hr>
                     <a href="upload.php" class="btn btn-danger">Riprova</a>
