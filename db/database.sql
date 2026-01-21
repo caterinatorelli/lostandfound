@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS utenti (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     ruolo ENUM('admin','fruitore') DEFAULT 'fruitore',
-    nome VARCHAR(100)
 );
 
 -- Tabella Oggetti Ritrovati (semplice)

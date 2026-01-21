@@ -118,9 +118,9 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if(!empty($it['inseritore_nome']) || !empty($it['inseritore_email'])): ?>
+                                <?php if(!empty($it['inseritore_email'])): ?>
                                     <small class="text-muted d-block mt-2 text-end">
-                                        Segnalato da: <?php echo htmlspecialchars($it['inseritore_nome'] ?? $it['inseritore_email']); ?>
+                                        Segnalato da: <?php echo htmlspecialchars($it['inseritore_email']); ?>
                                     </small>
                                 <?php endif; ?>
                             </div>

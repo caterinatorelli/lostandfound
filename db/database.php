@@ -17,12 +17,6 @@
             $this->db = new mysqli($host, $username, $password, $database, $port);
         }
 
-        /**
-         * Returns the user information
-         * @param string $username user's username
-         * @param string $password user's password
-         * @return array Array containing the user information
-         */
         public function checkLogin(string $username, string $password): array | null {
             $user = $this->getUser($username);
 
@@ -52,13 +46,12 @@
             return $stmt->execute();
         }
 
-        // New methods for the "search objects" page and to create "It's mine" requests
         /**
-         * Returns the reported objects (oggetti_ritrovati) with inserter info if present
-         * @return array
+         * Returns the reported objects (oggetti_ritrovati) with inserter info
+         * MODIFICATO: Rimosso u.nome
          */
         public function getFoundObjects(): array {
-            $query = "SELECT o.*, u.id AS inseritore_id, u.email AS inseritore_email, u.nome AS inseritore_nome
+            $query = "SELECT o.*, u.id AS inseritore_id, u.email AS inseritore_email
                     FROM oggetti_ritrovati o
                     LEFT JOIN utenti u ON o.id_inseritore = u.id
                     WHERE o.stato = 'approved'
@@ -69,13 +62,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * Creates a simple claim request in the richieste table
-         * @param int $objectId
-         * @param int $claimerId
-         * @param string|null $message
-         * @return bool
-         */
         public function createClaimRequest(int $objectId, int $claimerId, ?string $message = null): bool {
             $query = "INSERT INTO richieste (oggetto_id, richiedente_id, messaggio) VALUES (?, ?, ?)";
             $stmt = $this->db->prepare($query);
@@ -84,11 +70,6 @@
             return $stmt->execute();
         }
 
-        /**
-         * Returns the reports made by the user
-         * @param int $userId
-         * @return array
-         */
         public function getUserReports(int $userId): array {
             $query = "SELECT * FROM oggetti_ritrovati WHERE id_inseritore = ? ORDER BY data_inserimento DESC";
             $stmt = $this->db->prepare($query);
@@ -100,11 +81,10 @@
 
         /**
          * Returns pending claims for a reported object
-         * @param int $objectId
-         * @return array
+         * MODIFICATO: Rimosso u.nome
          */
         public function getPendingClaimsForReport(int $objectId): array {
-            $query = "SELECT r.*, u.email AS richiedente_email, u.nome AS richiedente_nome
+            $query = "SELECT r.*, u.email AS richiedente_email
                       FROM richieste r
                       LEFT JOIN utenti u ON r.richiedente_id = u.id
                       WHERE r.oggetto_id = ? AND r.stato = 'pending'
@@ -116,12 +96,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * Updates the status of a claim
-         * @param int $claimId
-         * @param string $status ('accettata' or 'rifiutata')
-         * @return bool
-         */
         public function updateClaimStatus(int $claimId, string $status): bool {
             $query = "UPDATE richieste SET stato = ? WHERE id = ?";
             $stmt = $this->db->prepare($query);
@@ -130,12 +104,6 @@
             return $stmt->execute();
         }
 
-        /**
-         * Updates the status of an object
-         * @param int $objectId
-         * @param string $status
-         * @return bool
-         */
         public function updateObjectStatus(int $objectId, string $status): bool {
             $query = "UPDATE oggetti_ritrovati SET stato = ? WHERE id = ?";
             $stmt = $this->db->prepare($query);
@@ -144,12 +112,6 @@
             return $stmt->execute();
         }
 
-        /**
-         * Checks if the user is authorized to manage a claim (i.e., is the owner of the reported object)
-         * @param int $claimId
-         * @param int $userId
-         * @return array | null
-         */
         public function isUserAuthorizedForClaim(int $claimId, int $userId): array | null {
             $query = "SELECT r.id, o.id as oggetto_id 
                       FROM richieste r
@@ -201,12 +163,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * Checks if a pending claim exists for the object by the user
-         * @param int $objectId
-         * @param int $userId
-         * @return bool
-         */
         public function hasPendingClaim(int $objectId, int $userId): bool {
             $query = "SELECT id FROM richieste WHERE oggetto_id = ? AND richiedente_id = ? AND stato = 'pending'";
             $stmt = $this->db->prepare($query);
