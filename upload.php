@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Salvataggio nel DB (se non ci sono errori precedenti)
+    // Salvataggio nel DB
     if ($stato_inserimento != "errore") {
         $successo = $db_obj->insertOggetto($nome, $categoria, $luogo, $data, $nome_foto, $id_inseritore);
         if ($successo) {
@@ -47,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $templateParams["titolo"] = "Lost and Found - Upload";
 $templateParams["nome"] = "components/upload-form.php";
-$templateParams["stato_inserimento"] = $stato_inserimento; // Passiamo lo stato
-$templateParams["errore_msg"] = $errore_msg;             // Passiamo l'errore
+$templateParams["stato_inserimento"] = $stato_inserimento; 
+$templateParams["errore_msg"] = $errore_msg;
 
 require_once("templates/base.php");
 ?>

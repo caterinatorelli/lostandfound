@@ -1,8 +1,8 @@
-/* --- VARIABILI GLOBALI --- */
+/*VARIABILI GLOBALI */
 :root {
-    --verde-campus: #198754;       /* Il verde principale */
-    --verde-hover: #146c43;        /* Verde leggermente più scuro per i tasti */
-    --sfondo-chiaro: #f8f9fa;      /* Grigio chiarissimo per lo sfondo pagina */
+    --verde-campus: #198754;
+    --verde-hover: #146c43;        
+    --sfondo-chiaro: #f8f9fa;
     --bianco: #ffffff;
 }
 
@@ -13,9 +13,6 @@ body {
     color: #333;
 }
 
-/* PERSONALIZZAZIONE COLORI BOOTSTRAP*/
-
-/* Cambia tutti i background "primary" in verde */
 .bg-primary {
     background-color: var(--verde-campus) !important;
 }
@@ -78,7 +75,7 @@ body {
 
 /* SUCCESSO E ICONE  */
 .success-icon {
-    font-size: 4rem; /* AGGIUNTO: Dal tuo style interno */
+    font-size: 4rem;
     color: var(--verde-campus);
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
 }
@@ -229,10 +226,10 @@ body {
 }
 /* serve per rendere accessibile la home*/
 .subtitle {
-    font-family: 'Montserrat', sans-serif; /* O il font che usavi per i titoli */
-    font-size: 1.5rem;      /* Regola la grandezza come preferisci */
-    font-weight: 600;       /* Grassetto */
-    margin-bottom: 10px;    /* Spaziatura */
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1.5rem;  
+    font-weight: 600;
+    margin-bottom: 10px;
     color: #333;         
 }
 
