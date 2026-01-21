@@ -111,27 +111,28 @@ require_once(__DIR__ . "/../utils/functions.php");
                                                 <?php foreach($claims as $claim): 
                                                     $richiedente = htmlspecialchars($claim['richiedente_nome'] ?? $claim['richiedente_email']);
                                                 ?>
-                                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                        <div>
+                                                    <li class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                                                        
+                                                        <div class="flex-grow-1">
                                                             <strong><?php echo $richiedente; ?></strong> ha scritto:<br>
                                                             <span class="text-muted">"<?php echo htmlspecialchars($claim['messaggio']); ?>"</span>
                                                         </div>
-                                                        <div class="d-flex gap-2">
-                                                            <form action="manage-claim-api.php" method="POST" class="d-inline">
-                                                                <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
+
+                                                        <div class="d-flex gap-2 w-100 w-md-auto">
+                                                            
+                                                            <form action="manage-claim-api.php" method="POST" class="flex-fill"> <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
                                                                 <input type="hidden" name="action" value="accept">
-                                                                <button type="submit" class="btn btn-success btn-sm" 
+                                                                <button type="submit" class="btn btn-success btn-sm w-100" 
                                                                         aria-label="Accetta richiesta di <?php echo $richiedente; ?> per <?php echo htmlspecialchars($report['nome']); ?>">
-                                                                    Accetta
+                                                                    <i class="bi bi-check-lg" aria-hidden="true"></i> Accetta
                                                                 </button>
                                                             </form>
                                                             
-                                                            <form action="manage-claim-api.php" method="POST" class="d-inline">
-                                                                <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
+                                                            <form action="manage-claim-api.php" method="POST" class="flex-fill"> <input type="hidden" name="claim_id" value="<?php echo $claim['id']; ?>">
                                                                 <input type="hidden" name="action" value="reject">
-                                                                <button type="submit" class="btn btn-danger btn-sm" 
+                                                                <button type="submit" class="btn btn-danger btn-sm w-100" 
                                                                         aria-label="Rifiuta richiesta di <?php echo $richiedente; ?>">
-                                                                    Rifiuta
+                                                                    <i class="bi bi-x-lg" aria-hidden="true"></i> Rifiuta
                                                                 </button>
                                                             </form>
                                                         </div>
