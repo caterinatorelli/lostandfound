@@ -106,7 +106,7 @@
                                             <?php if($isAdmin): ?>
                                                 <button type="submit" class="btn btn-danger btn-sm" 
                                                         aria-label="Admin: Elimina l'oggetto <?php echo htmlspecialchars($it['nome']); ?> dal sistema">
-                                                    <span class="bi bi-trash" aria-hidden="true"></span> Elimina (Admin)
+                                                    <span class="bi bi-trash" aria-hidden="true"></span> Elimina Segnalazione
                                                 </button>
                                             <?php else: ?>
                                                 <button type="submit" class="btn btn-outline-danger btn-sm" 
